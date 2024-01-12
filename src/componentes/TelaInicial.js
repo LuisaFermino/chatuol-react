@@ -1,9 +1,10 @@
 import styled from "styled-components";
-
+import { useState } from "react";
 import Logo from "../assets/img/logo.png";
 
 function TelaInicial() {
-  return (
+  const [visivel, setVisivel] = useState(true);
+  return visivel ? (
     <Inicio>
       <div>
         <header>
@@ -11,16 +12,20 @@ function TelaInicial() {
         </header>
         <main>
           <input type="text" placeholder="Digite seu nome" />
-          <Botao onclick="logar()">
+          <Botao onClick={() => setVisivel(false)}>
             <button>Entrar</button>
           </Botao>
         </main>
       </div>
     </Inicio>
+  ) : (
+    <></>
   );
 }
 
 const Inicio = styled.div`
+  z-index: 1;
+
   header {
     display: flex;
     justify-content: center;
