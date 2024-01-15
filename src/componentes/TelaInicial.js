@@ -1,25 +1,45 @@
 import styled from "styled-components";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 import Logo from "../assets/img/logo.png";
 
-function TelaInicial() {
-  const [visivel, setVisivel] = useState(true);
-  return visivel ? (
+function TelaInicial(event) {
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  const navigate = useNavigate();
+
+  function Logar() {
+    axios
+      .post(`http://localhost:5000/participants`, {
+        name: nomeUsuario,
+      })
+      .then((resp) => {
+        navigate("/TelaChat");
+      })
+      .catch((error) => {
+        alert("Usuário já existe");
+      });
+  }
+
+  return (
     <Inicio>
       <div>
         <header>
           <img src={Logo} alt="logo" />
         </header>
         <main>
-          <input type="text" placeholder="Digite seu nome" />
-          <Botao onClick={() => setVisivel(false)}>
-            <button>Entrar</button>
+          <input
+            type="text"
+            placeholder="Digite seu nome"
+            onChange={(e) => setNomeUsuario(e.target.value)}
+          />
+          <Botao>
+            <button onClick={Logar}>Entrar</button>
           </Botao>
         </main>
       </div>
     </Inicio>
-  ) : (
-    <></>
   );
 }
 

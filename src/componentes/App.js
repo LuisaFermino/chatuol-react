@@ -1,16 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import TelaInicial from "./TelaInicial";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TelaInicial from "./TelaInicial.js";
 import TelaChat from "./TelaChat.js";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <TelaInicial />,
+    },
+    {
+      path: "/TelaChat",
+      element: <TelaChat />,
+    },
+  ]);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<TelaInicial />} />
-        <Route path="/TelaChat" element={<TelaChat />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
