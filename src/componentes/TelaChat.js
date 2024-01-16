@@ -1,14 +1,34 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import { IoPeople } from "react-icons/io5";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 
 import MenuLateral from "./MenuLateral";
+import Mensagem from "./Mensagem";
 import Logo from "../assets/img/logo.png";
 
 function TelaChat() {
+  const [mensagens, setMensagens] = useState([]);
   const [menuVisivel, setMenuVisivel] = useState(false);
+
+  useEffect(() => {
+    const URL = "http://localhost:5000/messages";
+    const promise = axios.get(URL);
+    promise.then(({ data }) => setMensagens(data));
+    promise.catch((err) => alert("deu erro"));
+  }, []);
+
+  function montarMensagens() {
+    if (mensagens.length > 0) {
+      return mensagens.map(({ id, type, time, from, text }) => (
+        <Mensagem key={id} type={type} time={time} from={from} text={text} />
+      ));
+    } else {
+      return <p> Carregando mensagens...</p>;
+    }
+  }
 
   return (
     <Chat>
@@ -17,6 +37,7 @@ function TelaChat() {
         <IconeUsuario onClick={() => setMenuVisivel(true)} />
       </Menu>
       {menuVisivel ? <MenuLateral setMenuVisivel={setMenuVisivel} /> : <></>}
+      <Mensagens>{montarMensagens()}</Mensagens>
       <Rodape>
         <input type="text" placeholder="Escreva aqui..." />
         <IconeEnviar />
@@ -88,6 +109,16 @@ const Rodape = styled.div`
     margin-left: 20px;
     outline: none;
   }
+`;
+
+const Mensagens = styled.div`
+  width: 100vw;
+  height: 75vh;
+  position: relative;
+  left: 0;
+  top: 12vh;
+  min-height: 50vh;
+  overflow-y: scroll;
 `;
 
 export default TelaChat;
