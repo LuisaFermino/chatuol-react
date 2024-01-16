@@ -7,9 +7,9 @@ function Mensagem(props) {
     return (
       <Publica>
         <Texto>
-          <Horario>{time}</Horario>
-          <Home>{from}</Home>
-          <p>{text}</p>
+          <Horario>({time})</Horario>
+          <Home>{from}:</Home>
+          <Descricao>{text}</Descricao>
         </Texto>
       </Publica>
     );
@@ -17,9 +17,9 @@ function Mensagem(props) {
     return (
       <Status>
         <Texto>
-          <Horario>{time}</Horario>
+          <Horario>({time})</Horario>
           <Home>{from}</Home>
-          <p>{text}</p>
+          <Descricao>{text}</Descricao>
         </Texto>
       </Status>
     );
@@ -27,9 +27,9 @@ function Mensagem(props) {
     return (
       <Privada>
         <Texto>
-          <Horario>{time}</Horario>
-          <Home>{from}</Home>
-          <p>{text}</p>
+          <Horario>({time})</Horario>
+          <Home>{from}:</Home>
+          <Descricao>{text}</Descricao>
         </Texto>
       </Privada>
     );
@@ -38,14 +38,17 @@ function Mensagem(props) {
 
 const Publica = styled.div`
   background-color: #ffffff;
+  margin-top: 0.5vh;
 `;
 
 const Status = styled.div`
   background-color: #dcdcdc;
+  margin-top: 0.5vh;
 `;
 
 const Privada = styled.div`
   background-color: #ffdede;
+  margin-top: 0.5vh;
 `;
 
 const Texto = styled.p`
@@ -53,6 +56,7 @@ const Texto = styled.p`
   padding: 10px 10px;
   text-align: justify;
   line-height: 1.4;
+  display: flex;
 `;
 
 const Horario = styled.p`
@@ -60,7 +64,11 @@ const Horario = styled.p`
 `;
 const Home = styled.p`
   font-weight: 700;
-  margin-left: 1vw;
+  margin-left: 2vw;
+`;
+
+const Descricao = styled.p`
+  margin-left: 2vw;
 `;
 
 export default Mensagem;

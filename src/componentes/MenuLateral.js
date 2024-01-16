@@ -32,7 +32,6 @@ function MenuLateral({ setMenuVisivel }) {
           <Etapa>
             <IoLockClosed></IoLockClosed>
             <p>Reservadamente</p>
-            <Check></Check>
           </Etapa>
         </div>
       </Direita>
