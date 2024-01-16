@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-function MenuLateral() {
+function MenuLateral({ setMenuVisivel }) {
   return (
     <Menu>
-      <Esquerda></Esquerda>
+      <Esquerda onClick={() => setMenuVisivel(false)}></Esquerda>
       <Direita></Direita>
     </Menu>
   );

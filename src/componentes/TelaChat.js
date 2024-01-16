@@ -1,17 +1,22 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 import { IoPeople } from "react-icons/io5";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 
+import MenuLateral from "./MenuLateral";
 import Logo from "../assets/img/logo.png";
 
 function TelaChat() {
+  const [menuVisivel, setMenuVisivel] = useState(false);
+
   return (
     <Chat>
       <Menu>
         <img src={Logo} alt="logo" />
-        <IconeUsuario />
+        <IconeUsuario onClick={() => setMenuVisivel(true)} />
       </Menu>
+      {menuVisivel ? <MenuLateral setMenuVisivel={setMenuVisivel} /> : <></>}
       <Rodape>
         <input type="text" placeholder="Escreva aqui..." />
         <IconeEnviar />
