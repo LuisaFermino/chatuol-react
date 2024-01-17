@@ -16,10 +16,17 @@ function TelaInicial(event) {
       })
       .then((resp) => {
         navigate("/TelaChat");
+        setInterval(ManterConexao, 3000);
       })
       .catch((error) => {
         alert("Usuário já existe");
       });
+  }
+
+  function ManterConexao() {
+    axios.post(`http://localhost:5000/status`, {
+      name: nomeUsuario,
+    });
   }
 
   return (

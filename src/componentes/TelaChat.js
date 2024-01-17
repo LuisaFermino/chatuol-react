@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import { IoPeople } from "react-icons/io5";
 import { IoPaperPlaneOutline } from "react-icons/io5";
@@ -10,6 +11,20 @@ import Logo from "../assets/img/logo.png";
 
 function TelaChat() {
   const [menuVisivel, setMenuVisivel] = useState(false);
+  const [mensagens, setMensagens] = useState([]);
+
+  function MensagensNaTela() {
+    const URL = "http://localhost:5000/messages";
+    const mensagem = axios.get(URL);
+    mensagem.then(({ data }) => setMensagens(data));
+    mensagem.catch((err) => alert("deu erro"));
+  }
+
+  useEffect(() => {
+    MensagensNaTela();
+  }, []);
+
+  setInterval(MensagensNaTela, 3000);
 
   return (
     <Chat>
@@ -19,7 +34,7 @@ function TelaChat() {
       </Menu>
       {menuVisivel ? <MenuLateral setMenuVisivel={setMenuVisivel} /> : <></>}
       <Mensagens>
-        <MontarMensagens />
+        <MontarMensagens mensagens={mensagens} setMensagens={setMensagens} />
       </Mensagens>
       <Rodape>
         <input type="text" placeholder="Escreva aqui..." />

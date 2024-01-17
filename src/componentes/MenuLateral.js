@@ -11,27 +11,27 @@ function MenuLateral({ setMenuVisivel }) {
       <Esquerda onClick={() => setMenuVisivel(false)}></Esquerda>
       <Direita>
         <Titulo>
-          <p>Escolha um contato para enviar mensagem:</p>
+          <Contato>Escolha um contato para enviar mensagem:</Contato>
         </Titulo>
         <div>
           <Etapa>
             <IoPeople />
-            <p>Todos</p>
+            <Opcao>Todos</Opcao>
             <Check></Check>
           </Etapa>
         </div>
         <Titulo>
-          <p>Escolha a visibilidade:</p>
+          <Contato>Escolha a visibilidade:</Contato>
         </Titulo>
         <div>
           <Etapa>
             <IoLockOpen />
-            <p>Publico</p>
+            <Opcao>Publico</Opcao>
             <Check></Check>
           </Etapa>
           <Etapa>
             <IoLockClosed></IoLockClosed>
-            <p>Reservadamente</p>
+            <Opcao>Reservadamente</Opcao>
           </Etapa>
         </div>
       </Direita>
@@ -70,14 +70,6 @@ const Titulo = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2vh;
-
-  p {
-    text-align: center;
-    padding-top: 4vh;
-    font-size: 16px;
-    width: 55vw;
-    font-weight: 700;
-  }
 `;
 
 const Etapa = styled.div`
@@ -85,14 +77,21 @@ const Etapa = styled.div`
   align-items: center;
   margin-left: 20px;
   margin-top: 2vh;
-
-  p {
-    font-size: 16px;
-    font-weight: 400;
-    margin-left: 3vw;
-  }
 `;
 
+const Opcao = styled.p`
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 3vw;
+`;
+
+const Contato = styled.p`
+  text-align: center;
+  padding-top: 4vh;
+  font-size: 16px;
+  width: 55vw;
+  font-weight: 700;
+`;
 const Check = styled(IoCheckmarkOutline)`
   font-size: 24px;
   z-index: 1000;
