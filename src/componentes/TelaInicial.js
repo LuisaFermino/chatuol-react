@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import Logo from "../assets/img/logo.png";
 
-function TelaInicial(event) {
+function TelaInicial() {
   const [nomeUsuario, setNomeUsuario] = useState("");
   const navigate = useNavigate();
 
@@ -30,23 +30,25 @@ function TelaInicial(event) {
   }
 
   return (
-    <Inicio>
-      <div>
-        <header>
-          <img src={Logo} alt="logo" />
-        </header>
-        <main>
-          <input
-            type="text"
-            placeholder="Digite seu nome"
-            onChange={(e) => setNomeUsuario(e.target.value)}
-          />
-          <Botao>
-            <button onClick={Logar}>Entrar</button>
-          </Botao>
-        </main>
-      </div>
-    </Inicio>
+    <>
+      <Inicio>
+        <div>
+          <header>
+            <img src={Logo} alt="logo" />
+          </header>
+          <main>
+            <input
+              type="text"
+              placeholder="Digite seu nome"
+              onChange={(e) => setNomeUsuario(e.target.value)}
+            />
+            <Botao>
+              <button onClick={Logar}>Entrar</button>
+            </Botao>
+          </main>
+        </div>
+      </Inicio>
+    </>
   );
 }
 

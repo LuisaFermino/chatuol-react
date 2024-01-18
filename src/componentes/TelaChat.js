@@ -12,10 +12,12 @@ import Logo from "../assets/img/logo.png";
 function TelaChat() {
   const [menuVisivel, setMenuVisivel] = useState(false);
   const [mensagens, setMensagens] = useState([]);
+  const [mensagemDigitada, setMensagemDigitada] = useState("");
+
+  const URL = "http://localhost:5000";
 
   function MensagensNaTela() {
-    const URL = "http://localhost:5000/messages";
-    const mensagem = axios.get(URL);
+    const mensagem = axios.get(`${URL}/messages`);
     mensagem.then(({ data }) => setMensagens(data));
     mensagem.catch((err) => alert("deu erro"));
   }
@@ -26,6 +28,20 @@ function TelaChat() {
 
   setInterval(MensagensNaTela, 3000);
 
+  function EstruturaMensagemDigitada() {
+    const objetoMensagem = {
+      from: "Luisa",
+      to: "Todos",
+      text: mensagemDigitada,
+      type: "message",
+    };
+    axios.post(`${URL}/messages`, objetoMensagem).then(MensagensNaTela);
+  }
+
+  function EnviaMensagem() {
+    EstruturaMensagemDigitada(mensagemDigitada);
+    setMensagemDigitada("");
+  }
   return (
     <Chat>
       <Menu>
@@ -34,11 +50,16 @@ function TelaChat() {
       </Menu>
       {menuVisivel ? <MenuLateral setMenuVisivel={setMenuVisivel} /> : <></>}
       <Mensagens>
-        <MontarMensagens mensagens={mensagens} setMensagens={setMensagens} />
+        <MontarMensagens mensagens={mensagens} />
       </Mensagens>
       <Rodape>
-        <input type="text" placeholder="Escreva aqui..." />
-        <IconeEnviar />
+        <input
+          type="text"
+          placeholder="Escreva aqui..."
+          onChange={(e) => setMensagemDigitada(e.target.value)}
+          value={mensagemDigitada}
+        />
+        <IconeEnviar onClick={EnviaMensagem} />
       </Rodape>
     </Chat>
   );
