@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 import { IoPeople } from "react-icons/io5";
 import { IoCheckmarkOutline } from "react-icons/io5";
@@ -13,11 +14,11 @@ function MenuLateral({ setMenuVisivel }) {
         <Titulo>
           <Contato>Escolha um contato para enviar mensagem:</Contato>
         </Titulo>
+
         <div>
           <Etapa>
             <IoPeople />
             <Opcao>Todos</Opcao>
-            <Check></Check>
           </Etapa>
         </div>
         <Titulo>
@@ -27,7 +28,6 @@ function MenuLateral({ setMenuVisivel }) {
           <Etapa>
             <IoLockOpen />
             <Opcao>Publico</Opcao>
-            <Check></Check>
           </Etapa>
           <Etapa>
             <IoLockClosed></IoLockClosed>
@@ -92,12 +92,12 @@ const Contato = styled.p`
   width: 55vw;
   font-weight: 700;
 `;
-const Check = styled(IoCheckmarkOutline)`
-  font-size: 24px;
-  z-index: 1000;
-  color: #28bb25;
-  position: fixed;
-  right: 5vw;
-`;
+// const Check = styled(IoCheckmarkOutline)`
+//   font-size: 24px;
+//   z-index: 1000;
+//   color: #28bb25;
+//   position: fixed;
+//   right: 5vw;
+// `;
 
 export default MenuLateral;

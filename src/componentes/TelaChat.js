@@ -9,7 +9,7 @@ import MenuLateral from "./MenuLateral";
 import MontarMensagens from "./MontarMensagem";
 import Logo from "../assets/img/logo.png";
 
-function TelaChat() {
+function TelaChat({ nomeUsuario }) {
   const [menuVisivel, setMenuVisivel] = useState(false);
   const [mensagens, setMensagens] = useState([]);
   const [mensagemDigitada, setMensagemDigitada] = useState("");
@@ -22,15 +22,9 @@ function TelaChat() {
     mensagem.catch((err) => alert("deu erro"));
   }
 
-  useEffect(() => {
-    MensagensNaTela();
-  }, []);
-
-  setInterval(MensagensNaTela, 3000);
-
   function EstruturaMensagemDigitada() {
     const objetoMensagem = {
-      from: "Luisa",
+      from: nomeUsuario,
       to: "Todos",
       text: mensagemDigitada,
       type: "message",
@@ -42,6 +36,23 @@ function TelaChat() {
     EstruturaMensagemDigitada(mensagemDigitada);
     setMensagemDigitada("");
   }
+
+  function ManterConexao() {
+    axios.post(`${URL}/status`, {
+      name: nomeUsuario,
+    });
+  }
+
+  useEffect(() => {
+    MensagensNaTela();
+    const atualizaMensagens = setInterval(MensagensNaTela, 3000);
+    const conexao = setInterval(ManterConexao, 5000);
+    return () => {
+      clearInterval(atualizaMensagens);
+      clearInterval(conexao);
+    };
+  }, []);
+
   return (
     <Chat>
       <Menu>

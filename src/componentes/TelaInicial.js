@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../assets/img/logo.png";
 
-function TelaInicial() {
-  const [nomeUsuario, setNomeUsuario] = useState("");
+function TelaInicial({ nomeUsuario, setNomeUsuario }) {
   const navigate = useNavigate();
 
   function Logar() {
@@ -16,17 +15,10 @@ function TelaInicial() {
       })
       .then((resp) => {
         navigate("/TelaChat");
-        setInterval(ManterConexao, 3000);
       })
       .catch((error) => {
         alert("Usuário já existe");
       });
-  }
-
-  function ManterConexao() {
-    axios.post(`http://localhost:5000/status`, {
-      name: nomeUsuario,
-    });
   }
 
   return (
