@@ -13,6 +13,7 @@ function TelaChat({ nomeUsuario }) {
   const [menuVisivel, setMenuVisivel] = useState(false);
   const [mensagens, setMensagens] = useState([]);
   const [mensagemDigitada, setMensagemDigitada] = useState("");
+  const [visibilidade, setVisibilidade] = useState("message");
 
   const URL = "http://localhost:5000";
 
@@ -27,7 +28,7 @@ function TelaChat({ nomeUsuario }) {
       from: nomeUsuario,
       to: "Todos",
       text: mensagemDigitada,
-      type: "message",
+      type: visibilidade,
     };
     axios.post(`${URL}/messages`, objetoMensagem).then(MensagensNaTela);
   }
@@ -46,7 +47,7 @@ function TelaChat({ nomeUsuario }) {
   useEffect(() => {
     MensagensNaTela();
     const atualizaMensagens = setInterval(MensagensNaTela, 3000);
-    const conexao = setInterval(ManterConexao, 5000);
+    const conexao = setInterval(ManterConexao, 3000);
     return () => {
       clearInterval(atualizaMensagens);
       clearInterval(conexao);
@@ -59,7 +60,15 @@ function TelaChat({ nomeUsuario }) {
         <img src={Logo} alt="logo" />
         <IconeUsuario onClick={() => setMenuVisivel(true)} />
       </Menu>
-      {menuVisivel ? <MenuLateral setMenuVisivel={setMenuVisivel} /> : <></>}
+      {menuVisivel ? (
+        <MenuLateral
+          setMenuVisivel={setMenuVisivel}
+          visibilidade={visibilidade}
+          setVisibilidade={setVisibilidade}
+        />
+      ) : (
+        <></>
+      )}
       <Mensagens>
         <MontarMensagens mensagens={mensagens} />
       </Mensagens>

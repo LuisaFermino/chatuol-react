@@ -6,7 +6,7 @@ import { IoCheckmarkOutline } from "react-icons/io5";
 import { IoLockOpen } from "react-icons/io5";
 import { IoLockClosed } from "react-icons/io5";
 
-function MenuLateral({ setMenuVisivel }) {
+function MenuLateral({ setMenuVisivel, visibilidade, setVisibilidade }) {
   return (
     <Menu>
       <Esquerda onClick={() => setMenuVisivel(false)}></Esquerda>
@@ -14,7 +14,6 @@ function MenuLateral({ setMenuVisivel }) {
         <Titulo>
           <Contato>Escolha um contato para enviar mensagem:</Contato>
         </Titulo>
-
         <div>
           <Etapa>
             <IoPeople />
@@ -25,13 +24,21 @@ function MenuLateral({ setMenuVisivel }) {
           <Contato>Escolha a visibilidade:</Contato>
         </Titulo>
         <div>
-          <Etapa>
+          <Etapa onClick={() => setVisibilidade("message")}>
             <IoLockOpen />
             <Opcao>Publico</Opcao>
+            <Check
+              visibilidade={visibilidade === "message" ? true : false}
+            ></Check>
           </Etapa>
-          <Etapa>
+          <Etapa onClick={() => setVisibilidade("private_message")}>
             <IoLockClosed></IoLockClosed>
             <Opcao>Reservadamente</Opcao>
+            <Check
+              visibilidade={visibilidade === "private_message" ? true : false}
+            >
+              {" "}
+            </Check>
           </Etapa>
         </div>
       </Direita>
@@ -92,12 +99,13 @@ const Contato = styled.p`
   width: 55vw;
   font-weight: 700;
 `;
-// const Check = styled(IoCheckmarkOutline)`
-//   font-size: 24px;
-//   z-index: 1000;
-//   color: #28bb25;
-//   position: fixed;
-//   right: 5vw;
-// `;
+const Check = styled(IoCheckmarkOutline)`
+  font-size: 24px;
+  z-index: 1000;
+  color: #28bb25;
+  position: fixed;
+  right: 5vw;
+  display: ${({ visibilidade }) => (visibilidade ? "block" : "none")};
+`;
 
 export default MenuLateral;
