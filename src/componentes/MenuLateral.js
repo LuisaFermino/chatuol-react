@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { IoPeople } from "react-icons/io5";
-// import { IoCheckmarkOutline } from "react-icons/io5";
+import { IoCheckmarkOutline } from "react-icons/io5";
 import { IoLockOpen } from "react-icons/io5";
 import { IoLockClosed } from "react-icons/io5";
 
