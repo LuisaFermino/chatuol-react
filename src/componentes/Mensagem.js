@@ -31,7 +31,7 @@ function Mensagem(props) {
         <Texto>
           <Horario>({time})</Horario>
           <Dequem>{from}</Dequem>
-          <Descricao>reservadamente para</Descricao>
+          reservadamente para
           <Paraquem>{to}:</Paraquem>
           <Descricao>{text}</Descricao>
         </Texto>
@@ -64,12 +64,12 @@ const Privada = styled.div`
   min-height: 6vh;
   align-items: center;
   margin-top: 0.5vh;
+  display: flex;
 `;
 
-const Texto = styled.p`
+const Texto = styled.div`
   font-size: 14px;
   padding: 10px 10px;
-  text-align: justify;
   line-height: 1.4;
   display: flex;
 `;
@@ -85,11 +85,11 @@ const Dequem = styled.p`
 const Paraquem = styled.p`
   font-weight: 700;
   margin-left: 1vw;
-  word-break: break-all;
 `;
 
 const Descricao = styled.p`
   margin-left: 1vw;
+  word-break: break-all;
 `;
 
 export default Mensagem;

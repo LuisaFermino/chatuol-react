@@ -5,7 +5,15 @@ import { IoCheckmarkOutline } from "react-icons/io5";
 import { IoLockOpen } from "react-icons/io5";
 import { IoLockClosed } from "react-icons/io5";
 
-function MenuLateral({ setMenuVisivel, visibilidade, setVisibilidade }) {
+import ListaUsuarios from "./ListaUsuarios.js";
+
+function MenuLateral({
+  setMenuVisivel,
+  visibilidade,
+  setVisibilidade,
+  usuario,
+  nomeUsuario,
+}) {
   return (
     <Menu>
       <Esquerda onClick={() => setMenuVisivel(false)}></Esquerda>
@@ -18,6 +26,7 @@ function MenuLateral({ setMenuVisivel, visibilidade, setVisibilidade }) {
             <IoPeople />
             <Opcao>Todos</Opcao>
           </Etapa>
+          <ListaUsuarios usuario={usuario} nomeUsuario={nomeUsuario} />
         </div>
         <Titulo>
           <Contato>Escolha a visibilidade:</Contato>

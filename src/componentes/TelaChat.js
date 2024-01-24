@@ -14,6 +14,7 @@ function TelaChat({ nomeUsuario }) {
   const [mensagens, setMensagens] = useState([]);
   const [mensagemDigitada, setMensagemDigitada] = useState("");
   const [visibilidade, setVisibilidade] = useState("message");
+  const [usuario, setUsuario] = useState([]);
 
   const URL = "http://localhost:5000";
 
@@ -21,6 +22,12 @@ function TelaChat({ nomeUsuario }) {
     const mensagem = axios.get(`${URL}/messages`);
     mensagem.then(({ data }) => setMensagens(data));
     mensagem.catch((err) => alert("deu erro"));
+  }
+
+  function UsuariosAtivos() {
+    const usuarios = axios.get(`${URL}/participants`);
+    usuarios.then(({ data }) => setUsuario(data));
+    usuarios.catch((err) => alert("deu erro"));
   }
 
   function EstruturaMensagemDigitada() {
@@ -46,11 +53,14 @@ function TelaChat({ nomeUsuario }) {
 
   useEffect(() => {
     MensagensNaTela();
+    UsuariosAtivos();
     const atualizaMensagens = setInterval(MensagensNaTela, 3000);
     const conexao = setInterval(ManterConexao, 3000);
+    const ativos = setInterval(UsuariosAtivos, 3000);
     return () => {
       clearInterval(atualizaMensagens);
       clearInterval(conexao);
+      clearInterval(ativos);
     };
   }, []);
 
@@ -65,6 +75,8 @@ function TelaChat({ nomeUsuario }) {
           setMenuVisivel={setMenuVisivel}
           visibilidade={visibilidade}
           setVisibilidade={setVisibilidade}
+          usuario={usuario}
+          nomeUsuario={nomeUsuario}
         />
       ) : (
         <></>

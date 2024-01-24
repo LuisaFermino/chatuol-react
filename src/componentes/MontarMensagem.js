@@ -2,7 +2,7 @@ import Mensagem from "./Mensagem";
 
 function MontarMensagens({ mensagens }) {
   return mensagens[0] ? (
-    mensagens.map(({ indice, type, time, from, text, to }) => (
+    mensagens.map(({ type, time, from, text, to }, indice) => (
       <Mensagem
         key={indice}
         type={type}
