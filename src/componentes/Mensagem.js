@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-function Mensagem(props) {
-  const { type, time, from, text, to } = props;
-
+function Mensagem({ type, time, from, text, to }) {
   if (type === "message") {
     return (
       <Publica>

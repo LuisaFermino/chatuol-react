@@ -13,6 +13,8 @@ function MenuLateral({
   setVisibilidade,
   usuario,
   nomeUsuario,
+  contato,
+  setContato,
 }) {
   return (
     <Menu>
@@ -44,9 +46,7 @@ function MenuLateral({
             <Opcao>Reservadamente</Opcao>
             <Check
               visibilidade={visibilidade === "private_message" ? true : false}
-            >
-              {" "}
-            </Check>
+            ></Check>
           </Etapa>
         </div>
       </Direita>
@@ -115,5 +115,14 @@ const Check = styled(IoCheckmarkOutline)`
   right: 5vw;
   display: ${({ visibilidade }) => (visibilidade ? "block" : "none")};
 `;
+
+// const CheckContato = styled(IoCheckmarkOutline)`
+//   font-size: 24px;
+//   z-index: 1000;
+//   color: #28bb25;
+//   position: fixed;
+//   right: 5vw;
+//   display: ${({ contato }) => (contato ? "block" : "none")};
+// `;
 
 export default MenuLateral;

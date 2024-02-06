@@ -15,6 +15,7 @@ function TelaChat({ nomeUsuario }) {
   const [mensagemDigitada, setMensagemDigitada] = useState("");
   const [visibilidade, setVisibilidade] = useState("message");
   const [usuario, setUsuario] = useState([]);
+  const [contato, setContato] = useState("Todos");
 
   const URL = "http://localhost:5000";
 
@@ -77,6 +78,8 @@ function TelaChat({ nomeUsuario }) {
           setVisibilidade={setVisibilidade}
           usuario={usuario}
           nomeUsuario={nomeUsuario}
+          contato={contato}
+          setContato={setContato}
         />
       ) : (
         <></>

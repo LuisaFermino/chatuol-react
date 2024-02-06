@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IoPeople } from "react-icons/io5";
 
-function Usuarios({ name, nomeUsuario }) {
+function Usuarios({ name, nomeUsuario, contato, setContato }) {
   return name !== nomeUsuario ? (
     <Etapa>
       <IoPeople />
